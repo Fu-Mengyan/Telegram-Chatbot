@@ -30,9 +30,11 @@ Procfile and requirements.txt are files for depolying bot on heroku.
 -----------------------------------------------------------------------------------------------------------------
 
 ***important***
+
 1. My token has been deleted in the main program bot.
 2. Therefore,for running the bot correctly, one should obtain its bot token and delete two files.(CZ1003.csv and Setting.csv)
 3. If there are any questions, contact me through L1563614665@gmail.com (Liu Zhiheng)
+
 ***important***
 
 
