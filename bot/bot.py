@@ -981,7 +981,7 @@ class Main(ChatHandler):
 
 #########################   Main Function     #########################################
 developer_id = 439767082
-TOKEN = '385927736:AAHfYS2qGwydrERsd4cLoOzxtgfmpnv1vGs'
+TOKEN = '392540312:AAERhaHdBOZtBLtpwFplIAZthtu-KpJRs04'
 bot = telepot.aio.DelegatorBot(TOKEN, [
 	include_callback_query_chat_id(pave_event_space())
 	(per_chat_id(types = 'private'), create_open, Main,timeout=60*60*2)])# 1. this bot is not meant for group or channel 2. bot stage will return back to initial stage if no request for two hours.
