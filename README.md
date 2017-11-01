@@ -1,4 +1,6 @@
 This bot aims at facilitating the club management through telebot.
+telebot is a bot account from Telegram. https://web.telegram.org
+The current bot link is https://t.me/zaynTest_bot
 
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
@@ -38,7 +40,7 @@ Procfile and requirements.txt are files for depolying bot on heroku.
 ***important***
 
 
-Group Information:
+Project Member Information:
 
 Group name : GP ZERO
 
@@ -49,3 +51,6 @@ Assistant Programmer : Peng Luocheng, Fu Mengyan
 Documatation writer : Liu Zhiheng, Mu Siyi, Hu Jiami
 
 Documatation Editer : Trond Fredskilde
+
+
+Credit: Liu Zhiheng

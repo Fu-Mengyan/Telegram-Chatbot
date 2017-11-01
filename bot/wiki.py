@@ -35,6 +35,7 @@ def wiki(url):
 			break
 	return str(text_part)
 
+# read only the title of the wikipedia document
 def wiki_title(url):
 	file = urlopen(url)
 	page = file.read()

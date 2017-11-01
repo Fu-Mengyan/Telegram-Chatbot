@@ -3,10 +3,6 @@ import ast
 import time
 import telepot
 import asyncio
-from project_tools import Tools
-from Data_class import Data
-from wiki import wiki
-from wiki import wiki_title
 from telepot import DelegatorBot
 from telepot.aio.delegate import pave_event_space, per_chat_id, create_open,per_chat_id_in
 from telepot.aio.delegate import intercept_callback_query_origin,include_callback_query_chat_id
@@ -15,52 +11,68 @@ from telepot.aio.helper import ChatHandler
 import telepot.namedtuple
 from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
 
-#----------------------------------------------------------
-initial_process = 'A'
+
+'''
+
+User defined modules
+
+'''
+from project_tools import Tools
+from Data_class import Data
+from wiki import wiki
+from wiki import wiki_title
+
+#----------------Process One------------------------------------------
+initial_process = 'initial_process'
 ##
-initial_stage = '0'
-create_main_database = '1'#for implement of keywords
-set_information_database = '2'
+initial_stage = 'initial_stage'
+create_main_database = 'create_main_database'#for implement of keywords
+set_information_database = 'set_information_database'
 #----------------------------------------------------------
-#----------------------------------------------------------
-club_setting_process = 'B'#for group names.
+
+#----------------Process Two------------------------------------------
+club_setting_process = 'club_setting_process'#for group names.
 ##
-initial_stage = '0'
-set_group_photo = '1'
-group_name_setting = '2'
-subcommittee_setting = '3'
-maincommittee_setting = '4'
+initial_stage = 'initial_stage'
+set_group_photo = 'set_group_photo'
+group_name_setting = 'group_name_setting'
+subcommittee_setting = 'subcommittee_setting'
+maincommittee_setting = 'maincommittee_setting'
 #----------------------------------------------------------
-#----------------------------------------------------------
-creator_profile = 'C'
+
+#----------------Process Three------------------------------------------
+creator_profile = 'creator_profile'
 ##
-initial_stage = '0'
-edit_info = '5'
+initial_stage = 'initial_stage'
+edit_info = 'edit_info'
 #----------------------------------------------------------
 
 '''
 normal executing interface 
 '''
-#----------------------------------------------------------
-working_process = 'D'
+
+#----------------Process Four------------------------------------------
+working_process = 'working_process'
 ##
-initial_stage = '0'
-create_member_profile = '1'
-edit_info = '5'
-organize_activity='6'
-make_announcement='7'
-show_activity_database='10'
-change_hierarchy='11'
-change_group = '13'
+initial_stage = 'initial_stage'
+create_member_profile = 'create_member_profile'
+edit_info = 'edit_info'
+organize_activity='organize_activity'
+make_announcement='make_announcement'
+show_activity_database='show_activity_database'
+change_hierarchy='change_hierarchy'
+change_group = 'change_group'
 #----------------------------------------------------------
-#----------------------------------------------------------
-activity_process = 'E'
+
+#----------------Process Five------------------------------------------
+activity_process = 'activity_process'
 ##
-collect_feedback = '8'
-send_feedback = '9'
-query_stage = '12'## essential to stop showing main menu when answering queries
+collect_feedback = 'collect_feedback'
+send_feedback = 'send_feedback'
+query_stage = 'query_stage'## essential to stop showing main menu when answering queries
 #----------------------------------------------------------
-#----------------------------------------------------------
+
+
 class Main(ChatHandler):
 	club_name=''
 	processing_stage = initial_process

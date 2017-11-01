@@ -2,8 +2,12 @@
 
 this module aims at facilitate the process of using database in the main program.
 the module includes multiple functions.
+Make use of csv files.
+Including the usage of normal file reading and writing 
+and dictionary reading and writing. 
 
 '''
+
 import csv
 class Data:
 	def __init__(self,file_name,ID):

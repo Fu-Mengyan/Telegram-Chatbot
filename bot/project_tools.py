@@ -24,7 +24,9 @@ class Tools:
 		string = str(dict)
 		list = string.strip('{}').replace(':','   ：   ').split(',')
 		return list
-	
+
+
+
 	# this is the normal keyboard, parameters are multiple lists which will have both text and callback data	
 	@staticmethod
 	def keyboard(*args):
