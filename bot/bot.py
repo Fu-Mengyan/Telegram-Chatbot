@@ -390,7 +390,7 @@ class Main(ChatHandler):
 												,reply_markup=Tools.dynamic_keyboard_1(['Confirm', 'Reset']))
 #########################   Members' functions   ######################################
 #########################   Flow Control  (This bot will not accept information other than text and document)    #########################################
-		if self.ID == developer_id: #developer tool to restart the bot but keep the data in database.  # my id 439767082
+		if self.ID == developer_id: #0#developer tool to restart the bot but keep the data in database.  # my id 439767082
 			await self.sender.sendMessage('Developer Tools',reply_markup = Tools.dynamic_keyboard_1(['Retrive Setting files and databases','Deploy Setting files and databases']))
 		if content_type=='text' or content_type=='document':# only take these two types of message
 			try:# msg['text'] is not always callable. 
@@ -429,6 +429,7 @@ class Main(ChatHandler):
 #########################   Flow Control  (This bot will not accept information other than text and document)    #########################################
 ########################################################################################################################################################################
 ########################################################################################################################################################################
+#########################   Developer TOOLS  ########################################	
 	async def on_callback_query(self,msg):
 		query_id, from_id, query_data = telepot.glance(msg, flavor='callback_query')
 		if query_data == 'Retrive Setting files and databases':# for program improvement and maintanance
@@ -458,7 +459,6 @@ class Main(ChatHandler):
 					await bot.sendDocument(self.ID,open(activity+'.csv','rb'))
 			except Exception:
 				pass
-#########################   Developer TOOLS  ########################################	
 		elif query_data == 'Deploy Setting files and databases':
 			try:
 				db = Data('Setting',0)
@@ -480,7 +480,7 @@ class Main(ChatHandler):
 			except Exception:
 				await self.sender.sendMessage("Restart failed.")
 		elif query_data == 'Inform the developer to restart.':
-			await bot.sendMessage(developer_id,f'{self.first_name} requires to restart.')
+			await bot.sendMessage(developer_id,f'0#{self.first_name} requires to restart.')
 #########################   Developer TOOLS  ########################################	
 #########################   TOOLS #########################################	
 		async def _exit_():
@@ -540,7 +540,7 @@ class Main(ChatHandler):
 				await self.sender.sendMessage(f'Hi {self.first_name}, this is the demo version of our bot, you are accessing it as a member. Later, when the developer see your registration, he will change your hierarchy for you!')
 				await self.sender.sendMessage('You may also request the developer to restart the bot from beginning, "the setting up stage for the club".',reply_markup = Tools.dynamic_keyboard_1(['Inform the developer to restart.']))
 				await self.sender.sendMessage('Type anything to access the main menu.')
-				await bot.sendMessage(developer_id,f'{self.first_name} created his profile.')
+				# await bot.sendMessage(developer_id,f'0#{self.first_name} created his profile.')
 				tem = Data(Main.club_name,self.ID)
 				line = tem.dict_reader()
 				self.count = 0
