@@ -429,59 +429,59 @@ class Main(ChatHandler):
 #########################   Flow Control  (This bot will not accept information other than text and document)    #########################################
 ########################################################################################################################################################################
 ########################################################################################################################################################################
-# #########################   Developer TOOLS  ########################################	
-# 	async def on_callback_query(self,msg):
-# 		query_id, from_id, query_data = telepot.glance(msg, flavor='callback_query')
-# 		if query_data == 'Retrive Setting files and databases':# for program improvement and maintanance
-# 			db = Data('Setting',self.ID)
-# 			db.write_file(['activate'])
-# 			data = \
-# 			Main.club_name,\
-# 			Main.processing_stage ,\
-# 			Main.activity_name ,\
-# 			Main.activity_step ,\
-# 			Main.Dict_group_leaders ,\
-# 			Main.fieldname,\
-# 			Main.Hierarchy_0 ,\
-# 			Main.Hierarchy_1 ,\
-# 			Main.Hierarchy_2 ,\
-# 			Main.Hierarchy_3 ,\
-# 			Main.group_names,\
-# 			Main.activity_buffer ,\
-# 			Main.activity_list
-# 			print(data)
-# 			data = list(data)
-# 			db.write_file(data)
-# 			await bot.sendDocument(self.ID,open('Setting.csv','rb'))
-# 			try:	
-# 				await bot.sendDocument(self.ID,open(Main.club_name+'.csv','rb'))
-# 				for activity in Main.activity_list:
-# 					await bot.sendDocument(self.ID,open(activity+'.csv','rb'))
-# 			except Exception:
-# 				pass
-# 		elif query_data == 'Deploy Setting files and databases':
-# 			try:
-# 				db = Data('Setting',0)
-# 				Main.club_name,\
-# 				Main.processing_stage ,\
-# 				Main.activity_name ,\
-# 				= db.read_file('keys')[:3]
-# 				Main.activity_step = int(db.read_file('keys')[3])
-# 				Main.Dict_group_leaders = ast.literal_eval(db.read_file('keys')[4])
-# 				Main.fieldname = ast.literal_eval(db.read_file('keys')[5])
-# 				Main.Hierarchy_0  = ast.literal_eval(db.read_file('keys')[6])
-# 				Main.Hierarchy_1  = ast.literal_eval(db.read_file('keys')[7])
-# 				Main.Hierarchy_2  = ast.literal_eval(db.read_file('keys')[8])
-# 				Main.Hierarchy_3  = ast.literal_eval(db.read_file('keys')[9])
-# 				Main.group_names = ast.literal_eval(db.read_file('keys')[10])
-# 				Main.activity_buffer  = ast.literal_eval(db.read_file('keys')[11])
-# 				Main.activity_list = ast.literal_eval(db.read_file('keys')[12])
-# 				await self.sender.sendMessage("Restart successfully.")
-# 			except Exception:
-# 				await self.sender.sendMessage("Restart failed.")
-# 		elif query_data == 'Inform the developer to restart.':
-# 			await bot.sendMessage(developer_id,f'{self.first_name} requires to restart.')
-# #########################   Developer TOOLS  ########################################	
+	async def on_callback_query(self,msg):
+		query_id, from_id, query_data = telepot.glance(msg, flavor='callback_query')
+		if query_data == 'Retrive Setting files and databases':# for program improvement and maintanance
+			db = Data('Setting',self.ID)
+			db.write_file(['activate'])
+			data = \
+			Main.club_name,\
+			Main.processing_stage ,\
+			Main.activity_name ,\
+			Main.activity_step ,\
+			Main.Dict_group_leaders ,\
+			Main.fieldname,\
+			Main.Hierarchy_0 ,\
+			Main.Hierarchy_1 ,\
+			Main.Hierarchy_2 ,\
+			Main.Hierarchy_3 ,\
+			Main.group_names,\
+			Main.activity_buffer ,\
+			Main.activity_list
+			print(data)
+			data = list(data)
+			db.write_file(data)
+			await bot.sendDocument(self.ID,open('Setting.csv','rb'))
+			try:	
+				await bot.sendDocument(self.ID,open(Main.club_name+'.csv','rb'))
+				for activity in Main.activity_list:
+					await bot.sendDocument(self.ID,open(activity+'.csv','rb'))
+			except Exception:
+				pass
+#########################   Developer TOOLS  ########################################	
+		elif query_data == 'Deploy Setting files and databases':
+			try:
+				db = Data('Setting',0)
+				Main.club_name,\
+				Main.processing_stage ,\
+				Main.activity_name ,\
+				= db.read_file('keys')[:3]
+				Main.activity_step = int(db.read_file('keys')[3])
+				Main.Dict_group_leaders = ast.literal_eval(db.read_file('keys')[4])
+				Main.fieldname = ast.literal_eval(db.read_file('keys')[5])
+				Main.Hierarchy_0  = ast.literal_eval(db.read_file('keys')[6])
+				Main.Hierarchy_1  = ast.literal_eval(db.read_file('keys')[7])
+				Main.Hierarchy_2  = ast.literal_eval(db.read_file('keys')[8])
+				Main.Hierarchy_3  = ast.literal_eval(db.read_file('keys')[9])
+				Main.group_names = ast.literal_eval(db.read_file('keys')[10])
+				Main.activity_buffer  = ast.literal_eval(db.read_file('keys')[11])
+				Main.activity_list = ast.literal_eval(db.read_file('keys')[12])
+				await self.sender.sendMessage("Restart successfully.")
+			except Exception:
+				await self.sender.sendMessage("Restart failed.")
+		elif query_data == 'Inform the developer to restart.':
+			await bot.sendMessage(developer_id,f'{self.first_name} requires to restart.')
+#########################   Developer TOOLS  ########################################	
 #########################   TOOLS #########################################	
 		async def _exit_():
 			await self.sender.sendMessage('Bye~ Have a nice day.')
@@ -992,7 +992,7 @@ class Main(ChatHandler):
 		print("idle called")
 
 #########################   Main Function     #########################################
-developer_id = 439767082
+developer_id = 0#439767082
 TOKEN = '392540312:AAERhaHdBOZtBLtpwFplIAZthtu-KpJRs04'
 bot = telepot.aio.DelegatorBot(TOKEN, [
 	include_callback_query_chat_id(pave_event_space())
