@@ -120,7 +120,6 @@ class Main(ChatHandler):
 	async def on_chat_message(self,msg):
 		self.ID = msg['chat']['id']
 		content_type, chat_type, chat_id = telepot.glance(msg)
-		print(content_type)
 		self.first_name = msg["chat"]["first_name"]
 #########################   TOOLS #########################################
 		async def _Create_Profile(text):
@@ -256,6 +255,7 @@ class Main(ChatHandler):
 
 			# activity setting
 			elif self.stage == organize_activity:
+				print('act1')
 				if self.count == 0:
 					Main.activity_name=text
 					await self.sender.sendMessage(f'The activity name is <b>{text}</b>.',reply_markup = Tools.dynamic_keyboard_1(['Confirm','Reset']),parse_mode = 'HTML')
@@ -273,6 +273,7 @@ class Main(ChatHandler):
 				elif self.count == 2:
 					db = Data(Main.club_name,self.ID)
 					id_list = db.read_id('others')
+					print('act')
 					for item in id_list:
 						# try:
 							# await bot.sendMessage(int(item),'<b>ANNOUNCEMENT!!!</b>',parse_mode='HTML')
