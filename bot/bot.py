@@ -221,8 +221,11 @@ class Main(ChatHandler):
 #########################   Initial Setting   #########################################
 #########################   EXCOs functions   #########################################
 		async def _Working_Process_Managers():
-			if content_type == 'text':
+			print(content_type)
+			try:
 				text=msg['text']
+			except Exception:
+				pass
 			if self.stage == initial_stage or self.stage == collect_feedback:  #when you are in the working process, you can send any message to activate the action keyboard
 				button = ['Send an announcement',f'Require {Main.club_name} Database.',f'Change members\' Hierarchy.','Edit profile & Registration']
 				if Main.processing_stage != activity_process: # cannot show this button when there is a activity in progress
