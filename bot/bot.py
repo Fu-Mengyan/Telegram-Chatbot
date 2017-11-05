@@ -273,12 +273,12 @@ class Main(ChatHandler):
 					db = Data(Main.club_name,self.ID)
 					id_list = db.read_id('others')
 					for item in id_list:
-						try:
-							await bot.sendMessage(int(item),'<b>ANNOUNCEMENT!!!</b>',parse_mode='HTML')
-							await bot.sendMessage(int(item),f'<b>Event Invitation from {Main.club_name}</b>',parse_mode = 'HTML')
+						# try:
+							# await bot.sendMessage(int(item),'<b>ANNOUNCEMENT!!!</b>',parse_mode='HTML')
+							# await bot.sendMessage(int(item),f'<b>Event Invitation from {Main.club_name}</b>',parse_mode = 'HTML')
 							await bot.forwardMessage(int(item),self.ID,msg['message_id'])
-						except Exception:
-							pass
+						# except Exception:
+						# 	pass
 					await self.sender.sendMessage('You can continue sending announcements or start providing wiki references by URL.'\
 							,reply_markup = Tools.dynamic_keyboard_1(['Start','Activity Setting Completed.']))
 				elif self.count == 3:
@@ -537,8 +537,8 @@ class Main(ChatHandler):
 								'You may wait for the EXCOs to organize the next activities to participate in.\n'+
 								'You can send your feedback to EXCOs so we will organize better activities for you all.\n'+
 								'Thank you for your cooperation. ')
-				await self.sender.sendMessage(f'Hi {self.first_name}, this is the demo version of our bot, you are accessing it as a member. Later, when the developer see your registration, he will change your hierarchy for you!')
-				await self.sender.sendMessage('You may also request the developer to restart the bot from beginning, "the setting up stage for the club".',reply_markup = Tools.dynamic_keyboard_1(['Inform the developer to restart.']))
+				# await self.sender.sendMessage(f'Hi {self.first_name}, this is the demo version of our bot, you are accessing it as a member. Later, when the developer see your registration, he will change your hierarchy for you!')
+				# await self.sender.sendMessage('You may also request the developer to restart the bot from beginning, "the setting up stage for the club".',reply_markup = Tools.dynamic_keyboard_1(['Inform the developer to restart.']))
 				await self.sender.sendMessage('Type anything to access the main menu.')
 				# await bot.sendMessage(developer_id,f'0#{self.first_name} created his profile.')
 				tem = Data(Main.club_name,self.ID)
@@ -884,14 +884,13 @@ class Main(ChatHandler):
 				await self.sender.sendMessage('Send any message to change self information or register.')
 				self.stage = initial_stage
 			else:
-				try:
+				try:	
 					tem = Data(Main.club_name,self.ID)
 					dict_file = dict(tem.dict_reader(query_data))
 					string_profile = Tools.dict_processor(dict_file)
 					for item in string_profile[1:]:
 						await self.sender.sendMessage(item)
 				except Exception:
-					print('dict_file = '+dict_file)
 					print('error')
 #########################   Group leaders' functions   ################################	
 #########################   Members' functions   ######################################
