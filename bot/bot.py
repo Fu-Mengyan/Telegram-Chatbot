@@ -405,7 +405,7 @@ class Main(ChatHandler):
 					await bot.sendDocument(self.ID,open('Club_Assistant.docx','rb'))
 			except Exception:
 				pass
-			else:	
+			finally:	
 				if Main.processing_stage == initial_process:
 					await _Initial_Process()
 				elif Main.processing_stage == club_setting_process:
