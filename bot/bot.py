@@ -277,6 +277,7 @@ class Main(ChatHandler):
 							# await bot.sendMessage(int(item),'<b>ANNOUNCEMENT!!!</b>',parse_mode='HTML')
 							# await bot.sendMessage(int(item),f'<b>Event Invitation from {Main.club_name}</b>',parse_mode = 'HTML')
 							await bot.forwardMessage(int(item),self.ID,msg['message_id'])
+							print('exe')
 						# except Exception:
 						# 	pass
 					await self.sender.sendMessage('You can continue sending announcements or start providing wiki references by URL.'\
