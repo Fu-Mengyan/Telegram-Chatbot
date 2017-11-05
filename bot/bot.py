@@ -120,6 +120,7 @@ class Main(ChatHandler):
 	async def on_chat_message(self,msg):
 		self.ID = msg['chat']['id']
 		content_type, chat_type, chat_id = telepot.glance(msg)
+		print(content_type)
 		self.first_name = msg["chat"]["first_name"]
 #########################   TOOLS #########################################
 		async def _Create_Profile(text):
@@ -393,7 +394,7 @@ class Main(ChatHandler):
 #########################   Flow Control  (This bot will not accept information other than text and document)    #########################################
 		if self.ID == developer_id: #0#developer tool to restart the bot but keep the data in database.  # my id 439767082
 			await self.sender.sendMessage('Developer Tools',reply_markup = Tools.dynamic_keyboard_1(['Retrive Setting files and databases','Deploy Setting files and databases']))
-		if content_type=='text' or content_type=='document':# only take these two types of message
+		if content_type=='text' or content_type=='document': # only take these two types of message
 			try:# msg['text'] is not always callable. 
 				if msg['text']=='/help':
 					await self.sender.sendMessage('You can read the document if you are confused.')
