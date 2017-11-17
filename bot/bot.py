@@ -258,7 +258,6 @@ class Main(ChatHandler):
 
 			# activity setting
 			elif self.stage == organize_activity:
-				print('act1')
 				if self.count == 0:
 					Main.activity_name=text
 					await self.sender.sendMessage(f'The activity name is <b>{text}</b>.',reply_markup = Tools.dynamic_keyboard_1(['Confirm','Reset']),parse_mode = 'HTML')
@@ -276,15 +275,8 @@ class Main(ChatHandler):
 				elif self.count == 2:
 					db = Data(Main.club_name,self.ID)
 					id_list = db.read_id('others')
-					print('act')
 					for item in id_list:
-						# try:
-							# await bot.sendMessage(int(item),'<b>ANNOUNCEMENT!!!</b>',parse_mode='HTML')
-							# await bot.sendMessage(int(item),f'<b>Event Invitation from {Main.club_name}</b>',parse_mode = 'HTML')
-							await bot.forwardMessage(int(item),self.ID,msg['message_id'])
-							print('exe')
-						# except Exception:
-						# 	pass
+						await bot.forwardMessage(int(item),self.ID,msg['message_id'])
 					await self.sender.sendMessage('You can continue sending announcements or start providing wiki references by URL.'\
 							,reply_markup = Tools.dynamic_keyboard_1(['Start','Activity Setting Completed.']))
 				elif self.count == 3:
