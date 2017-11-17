@@ -7,8 +7,10 @@ Including the usage of normal file reading and writing
 and dictionary reading and writing. 
 
 '''
-
 import csv
+def filter(lst):
+	return [item for item in lst if item != []]
+
 class Data:
 	def __init__(self,file_name,ID):
 		self.file_name=str(file_name)
@@ -20,16 +22,16 @@ class Data:
 		print(self.Database)
 
 	def write_file(self,_field_name):
-		with open(self.file_name+'.csv','w',newline='') as file:		
+		with open(self.file_name+'.csv','w') as file:		
 			write_file = csv.writer(file)
 			write_file.writerow(_field_name)
 
 	# read all keys, all value, personal value, and others value (row)
 	def read_file(self,read_content,object=''):#output values: all, keys, all_values, specific_name_oriented_values
-		with open(self.file_name+'.csv','r',newline='') as file:		
-			read_file = csv.reader(file)
+		with open(self.file_name+'.csv','r') as file:		
+			read_file = filter(csv.reader(file))
 			if read_content == 'values':
-				next(read_file)
+				read_file = read_file[1:]
 			for line in read_file:
 				if read_content == 'values':
 					if line[3].lower() in object.lower():#the fourth value of the line: name(system default)
@@ -47,8 +49,8 @@ class Data:
 
 	# read all value of one or self in dict
 	def dict_reader(self,object = 'me'):
-		with open(self.file_name+'.csv','r',newline='') as file:		
-			read_file = csv.DictReader(file)
+		with open(self.file_name+'.csv','r') as file:		
+			read_file = filter(csv.DictReader(file))
 			for line in read_file:
 				if object == 'me':
 					if line['ID']==self.ID:
@@ -61,8 +63,8 @@ class Data:
 	# read vaue of a person, read id as default
 	# used for sending message to others.
 	def read_id(self,object = 'me'):
-		with open(self.file_name+'.csv','r',newline='') as file:		
-			read_id = csv.DictReader(file)
+		with open(self.file_name+'.csv','r') as file:		
+			read_id = filter(csv.DictReader(file))
 			Me = ''
 			id_buffer=[]
 			for line in read_id:
@@ -76,18 +78,18 @@ class Data:
 				return id_buffer
 
 	def read_position(self):
-		with open(self.file_name+'.csv','r',newline = '') as file:
-			read_position = csv.DictReader(file)
+		with open(self.file_name+'.csv','r') as file:
+			read_position = filter(csv.DictReader(file))
 			for line in read_position:
 				if line['ID']==self.ID:
 					return line['Hierarchy']
 
 	# read all name in database except president.
 	def read_name(self,restriction = []):
-		with open(self.file_name+'.csv','r',newline = '') as file:
-			read_name = csv.reader(file)
+		with open(self.file_name+'.csv','r') as file:
+			read_name = filter(csv.reader(file))
 			name_buffer = []
-			next(read_name)
+			read_name = read_name[1:]
 			for line in read_name:
 				if line[2] not in restriction:
 					name_buffer.append(line[3])
@@ -96,9 +98,9 @@ class Data:
 	# special function for group leaders
 	# get the name of group members.
 	def extract_group_member(self,groupname):
-		with open(self.file_name+'.csv','r',newline = '') as file:
+		with open(self.file_name+'.csv','r') as file:
 			name_list = []
-			read_name = csv.DictReader(file)
+			read_name = filter(csv.DictReader(file))
 			for line in read_name:
 				if line['Group Name']==groupname:
 					name_list.append(line['Name'])
@@ -106,7 +108,7 @@ class Data:
 
 	# for create a new profile in the database
 	def append_file(self,list_values):
-		with open(self.file_name+'.csv','a',newline='') as file:		
+		with open(self.file_name+'.csv','a') as file:		
 			append_file = csv.writer(file)
 			append_file.writerow(list_values)
 
@@ -114,7 +116,7 @@ class Data:
 	def edit_file(self,list_values,object = 'me'):# either to use DictReader and DictWriter depends largely on list_values input
 		field_name = self.read_file('keys')
 		_buffer = self.read_file('values')
-		with open(self.file_name+'.csv','w',newline='') as file:
+		with open(self.file_name+'.csv','w') as file:
 			write_file = csv.writer(file)
 			write_file.writerow(field_name)
 			if object == 'me':
@@ -131,3 +133,6 @@ class Data:
 						write_file.writerow(new_line)
 					else:
 						write_file.writerow(line)
+
+if __name__ == '__main__':
+	print('Testing')
