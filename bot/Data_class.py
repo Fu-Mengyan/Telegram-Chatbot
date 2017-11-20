@@ -19,10 +19,39 @@ class Data:
 	def test(self):
 		print(self.Database)
 
-	def write_file(self,_field_name):
-		with open(self.file_name+'.csv','w',newline='') as file:		
+	def write_file(_field_name):
+		lst = [str(i) for i in _field_name]
+		with open('input.csv','w',newline='') as file:
+			print(','.join(lst),file = file)
+
+	# for create a new profile in the database
+	def append_file(self,list_values):
+		lst = [str(i) for i in list_values]
+		with open(self.file_name+'.csv','a',newline='') as file:		
+			print(','.join(lst),file = file)
+			
+
+	# edit self or edit others file by president (change club officer position) 
+	def edit_file(self,list_values,object = 'me'):# either to use DictReader and DictWriter depends largely on list_values input
+		lst = [str(i) for i in list_values]
+		field_name = self.read_file('keys')
+		_buffer = self.read_file('values')
+		with open(self.file_name+'.csv','w',newline='') as file:
 			write_file = csv.writer(file)
-			write_file.writerow(_field_name)
+			print(','.join(field_name),file = file)
+			if object == 'me':
+				for line in _buffer:
+					if line[0] == self.ID:
+						print(','.join(lst),file = file)
+					else:
+						print(','.join(line),file = file)
+			else:
+				for line in _buffer:
+					if line[3] == object:
+						print(','.join(lst),file = file)
+					else:
+						print(','.join(line),file = file)
+
 
 	# read all keys, all value, personal value, and others value (row)
 	def read_file(self,read_content,object=''):#output values: all, keys, all_values, specific_name_oriented_values
@@ -103,31 +132,3 @@ class Data:
 				if line['Group Name']==groupname:
 					name_list.append(line['Name'])
 			return name_list
-
-	# for create a new profile in the database
-	def append_file(self,list_values):
-		with open(self.file_name+'.csv','a',newline='') as file:		
-			append_file = csv.writer(file)
-			append_file.writerow(list_values)
-
-	# edit self or edit others file by president (change club officer position) 
-	def edit_file(self,list_values,object = 'me'):# either to use DictReader and DictWriter depends largely on list_values input
-		field_name = self.read_file('keys')
-		_buffer = self.read_file('values')
-		with open(self.file_name+'.csv','w',newline='') as file:
-			write_file = csv.writer(file)
-			write_file.writerow(field_name)
-			if object == 'me':
-				for line in _buffer:
-					if line[0] == self.ID:
-						new_line=list_values
-						write_file.writerow(new_line)
-					else:
-						write_file.writerow(line)
-			else:
-				for line in _buffer:
-					if line[3] == object:
-						new_line=list_values
-						write_file.writerow(new_line)
-					else:
-						write_file.writerow(line)
