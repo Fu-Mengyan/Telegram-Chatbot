@@ -31,7 +31,7 @@ set_information_database = 'set_information_database'
 #----------------------------------------------------------
 
 #----------------Process Two------------------------------------------
-club_setting_process = 'club_setting_process'#for group names.
+club_setting_process = 'club_setting_process'#for group_names.
 ##
 initial_stage = 'initial_stage'
 set_group_photo = 'set_group_photo'
@@ -309,7 +309,7 @@ class Main(ChatHandler):
 				await self.sender.sendMessage('Hi! What can I help you with?',reply_markup = Tools.dynamic_keyboard_1(button))
 			elif self.stage == make_announcement:
 				db = Data(Main.club_name,self.ID)
-				gn = tem.dict_reader()['Group Name']
+				gn = tem.dict_reader()['Group_Name']
 				name_list = tem.extract_group_member(gn)
 				for name in name_list:
 					_id = db.dict_reader(name)['ID']
@@ -550,7 +550,7 @@ class Main(ChatHandler):
 			if query_data=='create' or query_data == 'reset':
 				await self.sender.sendMessage('Choose default mode or customized mode.')
 				await self.sender.sendMessage('default titles contain: <b>\n{:^s}, {:^s}, {:^s}, {:^s}, {:^s}, {:^s}, {:^s}, {:^s}, {:^s}, {:^s}.\n</b>\
-										'.format('Group name', 'Hierarchy', 'Name','Gender','Phone number','Matriculation number','Program','Year',\
+										'.format('Group_name', 'Hierarchy', 'Name','Gender','Phone_number','Matriculation_number','Program','Year',\
 										'Email address','Official Email'),reply_markup=Tools.keyboard(('default keywords setting','default')\
 																						,('Customize keywords setting','customize'))\
 																						,parse_mode = 'HTML')#stage 2 of initialization #
@@ -562,13 +562,13 @@ class Main(ChatHandler):
 				await self.sender.sendMessage('You can type anything to activate database settings.\nOr activate later at any time.') #
 				self.stage = set_information_database
 			elif query_data=='default':
-				Main.fieldname = ['ID','Group Name','Hierarchy','Name','Gender','Phone Number','Matriculation Number','Program/Year',
+				Main.fieldname = ['ID','Group_Name','Hierarchy','Name','Gender','Phone_Number','Matriculation_Number','Program/Year',
 								'Email Address','Official Email']
 				self.stage=create_main_database
 				await self.sender.sendMessage('Is there any other information you need? Seperate your queries by commas.'\
 										,reply_markup=Tools.keyboard(('Reset','reset'),('No need to add more.','complete')))#stage 3 of initialization
 			elif query_data == 'customize':
-				Main.fieldname = ['ID','Group Name','Hierarchy','Name','Gender']
+				Main.fieldname = ['ID','Group_Name','Hierarchy','Name','Gender']
 				self.stage=create_main_database
 				tem = str(Main.fieldname)
 				await self.sender.sendMessage('Customized setting still contains criterias for a club database structure.\n'\
@@ -868,7 +868,7 @@ class Main(ChatHandler):
 		async def _Working_Process_Leaders():
 			if query_data == 'View the profile of group members.':
 				tem = Data(Main.club_name,self.ID)
-				gn = tem.dict_reader()['Group Name']
+				gn = tem.dict_reader()['Group_Name']
 				try:
 					button = tem.extract_group_member(gn)
 					await self.sender.sendMessage('Whose profile do you need?',reply_markup = Tools.dynamic_keyboard_2(button))
@@ -899,7 +899,7 @@ class Main(ChatHandler):
 			elif self.stage == change_group:
 				db=Data(Main.club_name,self.ID)
 				profile=db.dict_reader()
-				profile['Group Name'] = query_data
+				profile['Group_Name'] = query_data
 				tem = []
 				for value in profile.values():
 					tem.append(value)
@@ -922,7 +922,7 @@ class Main(ChatHandler):
 				self.stage = initial_stage
 			elif query_data == 'Change group':
 				db = Data(Main.club_name,self.ID)
-				gn = db.dict_reader()['Group Name']
+				gn = db.dict_reader()['Group_Name']
 				if gn == '':
 					await self.sender.sendMessage('You have not joined a group yet')
 				else:
