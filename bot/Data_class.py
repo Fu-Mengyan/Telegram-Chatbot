@@ -22,12 +22,13 @@ class Data:
 	def write_file(self,_field_name):
 		lst = [str(i) for i in _field_name]
 		with open(self.file_name+'.csv','w',newline='') as file:
+			print(','.join(lst))	
 			print(','.join(lst),file = file)
 
 	# for create a new profile in the database
 	def append_file(self,list_values):
 		lst = [str(i) for i in list_values]
-		with open(self.file_name+'.csv','a',newline='') as file:		
+		with open(self.file_name+'.csv','a',newline='') as file:
 			print(','.join(lst),file = file)
 			
 
