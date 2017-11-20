@@ -19,9 +19,9 @@ class Data:
 	def test(self):
 		print(self.Database)
 
-	def write_file(_field_name):
+	def write_file(self,_field_name):
 		lst = [str(i) for i in _field_name]
-		with open('input.csv','w',newline='') as file:
+		with open(self.file_name+'.csv','w',newline='') as file:
 			print(','.join(lst),file = file)
 
 	# for create a new profile in the database
