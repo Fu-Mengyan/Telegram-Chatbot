@@ -29,6 +29,7 @@ class Data:
 	def append_file(self,list_values):
 		lst = [str(i) for i in list_values]
 		with open(self.file_name+'.csv','a',newline='') as file:
+			print(','.join(lst))	
 			print(','.join(lst),file = file)
 			
 
